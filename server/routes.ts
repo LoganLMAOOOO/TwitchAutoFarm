@@ -74,12 +74,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Authentication middleware
-  const isAuthenticated = (req: Request, res: Response, next: Function) => {
-    if (req.isAuthenticated()) {
-      return next();
-    }
-    res.status(401).json({ message: 'Unauthorized' });
+  // Authentication middleware - bypass authentication check
+  const isAuthenticated = (_req: Request, _res: Response, next: Function) => {
+    // Always allow access without checking authentication
+    return next();
   };
 
   // Authentication routes
@@ -130,16 +128,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
-  app.get('/api/auth/user', (req, res) => {
-    if (!req.user) {
-      return res.status(401).json({ message: 'Not authenticated' });
-    }
-    
-    const user = req.user as any;
+  app.get('/api/auth/user', (_req, res) => {
+    // Always return a mock user
     res.json({ 
       user: { 
-        id: user.id, 
-        username: user.username 
+        id: 1, 
+        username: 'demo_user' 
       }
     });
   });

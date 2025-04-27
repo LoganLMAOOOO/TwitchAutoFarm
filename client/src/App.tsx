@@ -17,53 +17,16 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { apiRequest } from "./lib/queryClient";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Check authentication status on initial load
+  // Automatically redirect to dashboard if on login page
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const res = await apiRequest("GET", "/api/auth/user");
-        const data = await res.json();
-        
-        if (data.user) {
-          setIsAuthenticated(true);
-          
-          // If on login page, redirect to dashboard
-          if (location.pathname === "/login") {
-            navigate("/");
-          }
-        } else {
-          setIsAuthenticated(false);
-          
-          // If not on login page, redirect to login
-          if (location.pathname !== "/login") {
-            navigate("/login");
-          }
-        }
-      } catch (error) {
-        setIsAuthenticated(false);
-        
-        // If not on login page, redirect to login
-        if (location.pathname !== "/login") {
-          navigate("/login");
-        }
-      }
-    };
-    
-    checkAuth();
+    if (location.pathname === "/login") {
+      navigate("/");
+    }
   }, [navigate, location.pathname]);
-
-  if (isAuthenticated === null) {
-    // Show loading state while checking authentication
-    return (
-      <div className="min-h-screen bg-[#18181B] flex items-center justify-center">
-        <div className="animate-spin w-8 h-8 border-4 border-[#9146FF] border-t-transparent rounded-full"></div>
-      </div>
-    );
-  }
 
   return (
     <QueryClientProvider client={queryClient}>
