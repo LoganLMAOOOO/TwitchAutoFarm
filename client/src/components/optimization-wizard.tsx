@@ -203,38 +203,38 @@ export default function OptimizationWizard({
                       <Card 
                         className={`bg-[#26262C] border-2 hover:bg-[#3A3A3D] transition-colors cursor-pointer overflow-hidden ${
                           selectedPreset === key 
-                            ? 'border-[#9146FF]' 
-                            : 'border-transparent hover:border-[#626267]'
+                            ? 'border-[#9146FF] shadow-[0_0_10px_rgba(145,70,255,0.3)]' 
+                            : 'border-[#4B4B56] hover:border-[#626267]'
                         }`}
                         onClick={() => handleSelectPreset(key as any)}
                       >
                         <CardHeader className="py-3 flex flex-row items-center justify-between">
                           <div>
-                            <CardTitle className="text-[#EFEFF1]">{preset.title}</CardTitle>
+                            <CardTitle className="text-white">{preset.title}</CardTitle>
                           </div>
                           {preset.icon}
                         </CardHeader>
                         <CardContent className="py-2">
-                          <CardDescription className="text-[#ADADB8]">
+                          <CardDescription className="text-[#EFEFF1]">
                             {preset.description}
                           </CardDescription>
                         </CardContent>
                       </Card>
                     </TooltipTrigger>
-                    <TooltipContent side="top" className="bg-[#18181B] border-[#323238] text-[#EFEFF1] p-3">
+                    <TooltipContent side="top" className="bg-[#18181B] border-2 border-[#4B4B56] text-white p-4 shadow-lg z-50">
                       <div className="space-y-2">
-                        <div className="grid grid-cols-2 gap-x-4 text-xs">
-                          <span>Points Weight:</span>
-                          <span className="font-mono">{preset.config.pointsWeight}%</span>
+                        <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-xs">
+                          <span className="text-[#ADADB8]">Points Weight:</span>
+                          <span className="font-mono text-white">{preset.config.pointsWeight}%</span>
                           
-                          <span>Prediction Weight:</span>
-                          <span className="font-mono">{preset.config.predictionWeight}%</span>
+                          <span className="text-[#ADADB8]">Prediction Weight:</span>
+                          <span className="font-mono text-white">{preset.config.predictionWeight}%</span>
                           
-                          <span>Max Bet:</span>
-                          <span className="font-mono">{preset.config.maxBetPercentage}%</span>
+                          <span className="text-[#ADADB8]">Max Bet:</span>
+                          <span className="font-mono text-white">{preset.config.maxBetPercentage}%</span>
                           
-                          <span>Channels/Account:</span>
-                          <span className="font-mono">{preset.config.channelsPerAccount}</span>
+                          <span className="text-[#ADADB8]">Channels/Account:</span>
+                          <span className="font-mono text-white">{preset.config.channelsPerAccount}</span>
                         </div>
                       </div>
                     </TooltipContent>
@@ -267,25 +267,25 @@ export default function OptimizationWizard({
             </div>
 
             <div className="space-y-4 mb-6">
-              <Card className="bg-[#26262C] border-[#323238]">
+              <Card className="bg-[#26262C] border-2 border-[#4B4B56] shadow-md">
                 <CardHeader className="py-3">
-                  <CardTitle className="text-[#EFEFF1] text-base">Account Configuration</CardTitle>
+                  <CardTitle className="text-white text-base">Account Configuration</CardTitle>
                 </CardHeader>
                 <CardContent className="py-2">
-                  <ul className="space-y-2 text-sm text-[#ADADB8]">
+                  <ul className="space-y-2 text-sm text-white">
                     <li className="flex justify-between">
-                      <span>Accounts to optimize:</span>
-                      <span className="font-semibold text-[#EFEFF1]">{accounts.length}</span>
+                      <span className="text-[#ADADB8]">Accounts to optimize:</span>
+                      <span className="font-semibold text-white">{accounts.length}</span>
                     </li>
                     <li className="flex justify-between">
-                      <span>Total channels to farm:</span>
-                      <span className="font-semibold text-[#EFEFF1]">
+                      <span className="text-[#ADADB8]">Total channels to farm:</span>
+                      <span className="font-semibold text-white">
                         {accounts.length * presets[selectedPreset].config.channelsPerAccount}
                       </span>
                     </li>
                     <li className="flex justify-between">
-                      <span>Channels per account:</span>
-                      <span className="font-semibold text-[#EFEFF1]">
+                      <span className="text-[#ADADB8]">Channels per account:</span>
+                      <span className="font-semibold text-white">
                         {presets[selectedPreset].config.channelsPerAccount}
                       </span>
                     </li>
@@ -293,28 +293,28 @@ export default function OptimizationWizard({
                 </CardContent>
               </Card>
 
-              <Card className="bg-[#26262C] border-[#323238]">
+              <Card className="bg-[#26262C] border-2 border-[#4B4B56] shadow-md">
                 <CardHeader className="py-3">
-                  <CardTitle className="text-[#EFEFF1] text-base">Point Strategy</CardTitle>
+                  <CardTitle className="text-white text-base">Point Strategy</CardTitle>
                 </CardHeader>
                 <CardContent className="py-2">
-                  <ul className="space-y-2 text-sm text-[#ADADB8]">
+                  <ul className="space-y-2 text-sm text-white">
                     <li className="flex justify-between">
-                      <span>Point claiming priority:</span>
-                      <span className="font-semibold text-[#EFEFF1]">
+                      <span className="text-[#ADADB8]">Point claiming priority:</span>
+                      <span className="font-semibold text-white">
                         {presets[selectedPreset].config.pointsWeight}%
                       </span>
                     </li>
                     <li className="flex justify-between">
-                      <span>Prediction strategy:</span>
-                      <span className="font-semibold text-[#EFEFF1]">
+                      <span className="text-[#ADADB8]">Prediction strategy:</span>
+                      <span className="font-semibold text-white">
                         {selectedPreset === 'aggressive' ? 'High Risk/Reward' : 
                          selectedPreset === 'conservative' ? 'Low Risk' : 'Balanced'}
                       </span>
                     </li>
                     <li className="flex justify-between">
-                      <span>Max bet per prediction:</span>
-                      <span className="font-semibold text-[#EFEFF1]">
+                      <span className="text-[#ADADB8]">Max bet per prediction:</span>
+                      <span className="font-semibold text-white">
                         {presets[selectedPreset].config.maxBetPercentage}% of balance
                       </span>
                     </li>
@@ -323,17 +323,17 @@ export default function OptimizationWizard({
               </Card>
             </div>
 
-            <div className="flex justify-between">
+            <div className="flex sm:justify-between justify-center gap-3 flex-wrap">
               <Button 
                 variant="outline" 
                 onClick={() => setStep(1)}
-                className="bg-transparent text-[#EFEFF1] border-[#323238] hover:bg-[#26262C]"
+                className="bg-transparent text-[#EFEFF1] border-[#323238] hover:bg-[#26262C] flex-1 sm:flex-none min-w-[100px]"
               >
                 Back
               </Button>
               <Button 
                 onClick={handleStartOptimization}
-                className="bg-[#9146FF] hover:bg-[#772CE8] text-white"
+                className="bg-[#9146FF] hover:bg-[#772CE8] text-white flex-1 sm:flex-none min-w-[180px]"
               >
                 Start Optimization
               </Button>
@@ -364,43 +364,43 @@ export default function OptimizationWizard({
                   <div className={`w-5 h-5 rounded-full flex items-center justify-center mr-3 ${progress >= 20 ? 'bg-[#9146FF]' : 'bg-[#26262C]'}`}>
                     {progress >= 20 && <Check className="h-3 w-3 text-white" />}
                   </div>
-                  <span className={progress >= 20 ? 'text-[#EFEFF1]' : 'text-[#ADADB8]'}>
+                  <span className={progress >= 20 ? 'text-white font-medium' : 'text-[#ADADB8]'}>
                     Analyzing accounts
                   </span>
                 </div>
                 
                 <div className="flex items-center text-sm">
-                  <div className={`w-5 h-5 rounded-full flex items-center justify-center mr-3 ${progress >= 40 ? 'bg-[#9146FF]' : 'bg-[#26262C]'}`}>
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center mr-3 ${progress >= 40 ? 'bg-[#9146FF] shadow-md border border-[#9146FF]' : 'bg-[#26262C] border border-[#4B4B56]'}`}>
                     {progress >= 40 && <Check className="h-3 w-3 text-white" />}
                   </div>
-                  <span className={progress >= 40 ? 'text-[#EFEFF1]' : 'text-[#ADADB8]'}>
+                  <span className={progress >= 40 ? 'text-white font-medium' : 'text-[#ADADB8]'}>
                     Selecting optimal channels
                   </span>
                 </div>
                 
                 <div className="flex items-center text-sm">
-                  <div className={`w-5 h-5 rounded-full flex items-center justify-center mr-3 ${progress >= 60 ? 'bg-[#9146FF]' : 'bg-[#26262C]'}`}>
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center mr-3 ${progress >= 60 ? 'bg-[#9146FF] shadow-md border border-[#9146FF]' : 'bg-[#26262C] border border-[#4B4B56]'}`}>
                     {progress >= 60 && <Check className="h-3 w-3 text-white" />}
                   </div>
-                  <span className={progress >= 60 ? 'text-[#EFEFF1]' : 'text-[#ADADB8]'}>
+                  <span className={progress >= 60 ? 'text-white font-medium' : 'text-[#ADADB8]'}>
                     Configuring prediction strategies
                   </span>
                 </div>
                 
                 <div className="flex items-center text-sm">
-                  <div className={`w-5 h-5 rounded-full flex items-center justify-center mr-3 ${progress >= 80 ? 'bg-[#9146FF]' : 'bg-[#26262C]'}`}>
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center mr-3 ${progress >= 80 ? 'bg-[#9146FF] shadow-md border border-[#9146FF]' : 'bg-[#26262C] border border-[#4B4B56]'}`}>
                     {progress >= 80 && <Check className="h-3 w-3 text-white" />}
                   </div>
-                  <span className={progress >= 80 ? 'text-[#EFEFF1]' : 'text-[#ADADB8]'}>
+                  <span className={progress >= 80 ? 'text-white font-medium' : 'text-[#ADADB8]'}>
                     Setting up point collection timers
                   </span>
                 </div>
                 
                 <div className="flex items-center text-sm">
-                  <div className={`w-5 h-5 rounded-full flex items-center justify-center mr-3 ${progress >= 100 ? 'bg-[#9146FF]' : 'bg-[#26262C]'}`}>
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center mr-3 ${progress >= 100 ? 'bg-[#9146FF] shadow-md border border-[#9146FF]' : 'bg-[#26262C] border border-[#4B4B56]'}`}>
                     {progress >= 100 && <Check className="h-3 w-3 text-white" />}
                   </div>
-                  <span className={progress >= 100 ? 'text-[#EFEFF1]' : 'text-[#ADADB8]'}>
+                  <span className={progress >= 100 ? 'text-white font-medium' : 'text-[#ADADB8]'}>
                     Finalizing optimization
                   </span>
                 </div>
@@ -412,7 +412,7 @@ export default function OptimizationWizard({
                 variant="outline" 
                 onClick={onClose}
                 disabled={!optimizeMutation.isSuccess && optimizing}
-                className="bg-transparent text-[#EFEFF1] border-[#323238] hover:bg-[#26262C]"
+                className="bg-transparent text-[#EFEFF1] border-[#323238] hover:bg-[#26262C] min-w-[100px] shadow-md"
               >
                 {optimizeMutation.isSuccess ? 'Close' : 'Cancel'}
               </Button>

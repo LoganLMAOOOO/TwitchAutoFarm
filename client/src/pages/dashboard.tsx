@@ -96,8 +96,8 @@ export default function Dashboard() {
         {/* Dashboard Content */}
         <main className="flex-1 overflow-y-auto px-4 py-4 md:p-6 scrollbar-styled">
           {/* One-Click Optimization Banner */}
-          <div className="mb-6 p-4 md:p-6 bg-gradient-to-r from-[#18181B] to-[#26262C] border border-[#323238] rounded-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-10">
+          <div className="mb-6 p-4 md:p-6 bg-gradient-to-r from-[#18181B] to-[#1F1F23] border-2 border-[#4B4B56] rounded-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-5">
               <div className="w-full h-full bg-[#9146FF] rounded-full blur-3xl transform -translate-x-1/2"></div>
             </div>
             
@@ -106,7 +106,7 @@ export default function Dashboard() {
                 <h3 className="text-lg md:text-xl font-bold bg-gradient-to-r from-[#9146FF] to-[#772CE8] bg-clip-text text-transparent mb-2">
                   One-Click Optimization
                 </h3>
-                <p className="text-sm text-[#ADADB8] max-w-xl">
+                <p className="text-sm text-white max-w-xl">
                   Automatically configure your farms for maximum point collection and prediction success
                   based on proven strategies.
                 </p>
@@ -114,7 +114,7 @@ export default function Dashboard() {
               
               <Button 
                 onClick={() => setIsOptimizationWizardOpen(true)}
-                className="bg-[#9146FF] hover:bg-[#772CE8] text-white font-medium flex items-center px-4 py-2 h-auto"
+                className="bg-[#9146FF] hover:bg-[#772CE8] text-white font-medium flex items-center px-4 py-2 h-auto min-w-[140px] justify-center shadow-md"
                 disabled={!accounts || accounts.length === 0}
               >
                 <Sparkles className="mr-2 h-5 w-5" />
@@ -123,7 +123,7 @@ export default function Dashboard() {
             </div>
             
             {(!accounts || accounts.length === 0) && (
-              <p className="text-xs text-[#ADADB8] mt-2">
+              <p className="text-xs text-white mt-2">
                 Add at least one account to enable optimization
               </p>
             )}
