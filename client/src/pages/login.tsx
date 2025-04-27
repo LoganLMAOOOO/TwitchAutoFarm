@@ -104,18 +104,18 @@ export default function Login({ onLoginSuccess }: LoginProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md bg-card">
+    <div className="min-h-screen flex items-center justify-center bg-background dark:bg-[#18181B] p-4">
+      <Card className="w-full max-w-md bg-card dark:bg-[#1F1F23] dark:text-[#EFEFF1] dark:border-[#323238]">
         <CardHeader>
           <div className="flex justify-center mb-6">
-            <div className="w-14 h-14 rounded-xl bg-primary flex items-center justify-center">
+            <div className="w-14 h-14 rounded-xl bg-primary dark:bg-[#9146FF] flex items-center justify-center">
               <TwitchIcon size={32} className="text-white" />
             </div>
           </div>
-          <CardTitle className="text-2xl font-bold text-center">
+          <CardTitle className="text-2xl font-bold text-center text-foreground dark:text-[#EFEFF1]">
             TwitchFarm
           </CardTitle>
-          <CardDescription className="text-center text-muted-foreground">
+          <CardDescription className="text-center text-muted-foreground dark:text-[#ADADB8]">
             {isRegistering 
               ? "Create an account to get started" 
               : "Login to your account to continue"}
@@ -130,9 +130,13 @@ export default function Login({ onLoginSuccess }: LoginProps) {
                   name="username"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Username</FormLabel>
+                      <FormLabel className="text-foreground">Username</FormLabel>
                       <FormControl>
-                        <Input placeholder="username" {...field} />
+                        <Input 
+                          placeholder="username" 
+                          className="bg-background text-foreground border-input" 
+                          {...field} 
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -143,9 +147,14 @@ export default function Login({ onLoginSuccess }: LoginProps) {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Password</FormLabel>
+                      <FormLabel className="text-foreground">Password</FormLabel>
                       <FormControl>
-                        <Input type="password" placeholder="********" {...field} />
+                        <Input 
+                          type="password" 
+                          placeholder="********" 
+                          className="bg-background text-foreground border-input" 
+                          {...field} 
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -156,9 +165,14 @@ export default function Login({ onLoginSuccess }: LoginProps) {
                   name="confirmPassword"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Confirm Password</FormLabel>
+                      <FormLabel className="text-foreground">Confirm Password</FormLabel>
                       <FormControl>
-                        <Input type="password" placeholder="********" {...field} />
+                        <Input 
+                          type="password" 
+                          placeholder="********" 
+                          className="bg-background text-foreground border-input" 
+                          {...field} 
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -177,9 +191,13 @@ export default function Login({ onLoginSuccess }: LoginProps) {
                   name="username"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Username</FormLabel>
+                      <FormLabel className="text-foreground">Username</FormLabel>
                       <FormControl>
-                        <Input placeholder="username" {...field} />
+                        <Input 
+                          placeholder="username" 
+                          className="bg-background text-foreground border-input" 
+                          {...field} 
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -190,9 +208,14 @@ export default function Login({ onLoginSuccess }: LoginProps) {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Password</FormLabel>
+                      <FormLabel className="text-foreground">Password</FormLabel>
                       <FormControl>
-                        <Input type="password" placeholder="********" {...field} />
+                        <Input 
+                          type="password" 
+                          placeholder="********" 
+                          className="bg-background text-foreground border-input" 
+                          {...field} 
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -208,7 +231,7 @@ export default function Login({ onLoginSuccess }: LoginProps) {
         <CardFooter>
           <Button
             variant="ghost"
-            className="w-full text-muted-foreground"
+            className="w-full text-muted-foreground dark:text-[#ADADB8] dark:hover:text-[#EFEFF1] dark:hover:bg-[#2D2D39]"
             onClick={() => {
               setIsRegistering(!isRegistering);
               loginForm.reset();

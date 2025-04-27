@@ -67,19 +67,21 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
+      <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
           <Toaster />
-          <Routes>
-            <Route path="/login" element={<Login onLoginSuccess={() => setIsAuthenticated(true)} />} />
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/accounts" element={<Accounts />} />
-            <Route path="/channels" element={<Channels />} />
-            <Route path="/predictions" element={<Predictions />} />
-            <Route path="/logs" element={<Logs />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <div className="dark">
+            <Routes>
+              <Route path="/login" element={<Login onLoginSuccess={() => setIsAuthenticated(true)} />} />
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/accounts" element={<Accounts />} />
+              <Route path="/channels" element={<Channels />} />
+              <Route path="/predictions" element={<Predictions />} />
+              <Route path="/logs" element={<Logs />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
         </TooltipProvider>
       </ThemeProvider>
     </QueryClientProvider>
