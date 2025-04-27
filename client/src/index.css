@@ -3,36 +3,27 @@
 @tailwind utilities;
 
 :root {
-  --background: #18181B;
-  --foreground: #EFEFF1;
-  
-  --muted: 60 4.8% 95.9%;
-  --muted-foreground: #ADADB8;
-  
-  --popover: #1F1F23;
-  --popover-foreground: #EFEFF1;
-  
-  --card: #1F1F23;
-  --card-foreground: #EFEFF1;
-  
-  --border: #323238;
-  --input: #323238;
-  
-  --primary: #9146FF;
-  --primary-foreground: #FFFFFF;
-  
-  --secondary: #2D2D39;
-  --secondary-foreground: #EFEFF1;
-  
-  --accent: #26262C;
-  --accent-foreground: #EFEFF1;
-  
-  --destructive: #F43F5E;
-  --destructive-foreground: #EFEFF1;
-  
-  --ring: #ADADB8;
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 272 67% 64%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 5.9% 10%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 240 10% 3.9%;
   --radius: 0.5rem;
-  
+
   --chart-1: #9146FF;
   --chart-2: #00C989;
   --chart-3: #FFCA61;
@@ -42,6 +33,28 @@
   --success: #00C989;
   --warning: #FFCA61;
   --error: #F43F5E;
+}
+
+.dark {
+  --background: #18181B;
+  --foreground: #EFEFF1;
+  --card: #1F1F23;
+  --card-foreground: #EFEFF1;
+  --popover: #1F1F23;
+  --popover-foreground: #EFEFF1;
+  --primary: #9146FF;
+  --primary-foreground: #FFFFFF;
+  --secondary: #2D2D39;
+  --secondary-foreground: #EFEFF1;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: #ADADB8;
+  --accent: #26262C;
+  --accent-foreground: #EFEFF1;
+  --destructive: #F43F5E;
+  --destructive-foreground: #EFEFF1;
+  --border: #323238;
+  --input: #323238;
+  --ring: #ADADB8;
 }
 
 @layer base {

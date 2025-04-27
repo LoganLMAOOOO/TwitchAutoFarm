@@ -46,6 +46,14 @@ export function ThemeProvider({
     root.classList.remove("light", "dark");
     root.classList.add(theme);
   }, [theme]);
+  
+  // Force dark theme on initial load
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (!root.classList.contains('dark')) {
+      root.classList.add('dark');
+    }
+  }, []);
 
   const value = {
     theme,
