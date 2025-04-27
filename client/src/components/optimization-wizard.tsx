@@ -176,7 +176,7 @@ export default function OptimizationWizard({
         if (open) resetState();
       }}
     >
-      <DialogContent className="bg-[#1F1F23] border-[#323238] max-w-xl p-0 rounded-xl shadow-xl overflow-y-auto max-h-[90vh]">
+      <DialogContent className="bg-[#1F1F23] border-[#323238] max-w-xl w-[95vw] md:w-full p-0 rounded-xl shadow-xl overflow-y-auto max-h-[90vh] mx-auto my-4">
         <DialogHeader className="px-6 pt-6 pb-0">
           <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-[#9146FF] to-[#772CE8] bg-clip-text text-transparent">
             Channel Point Optimization Wizard
@@ -195,7 +195,7 @@ export default function OptimizationWizard({
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 w-full">
               {Object.entries(presets).map(([key, preset]) => (
                 <TooltipProvider key={key}>
                   <Tooltip>
@@ -411,7 +411,7 @@ export default function OptimizationWizard({
               <Button 
                 variant="outline" 
                 onClick={onClose}
-                disabled={!optimizeMutation.isSuccess && optimizing}
+                disabled={optimizing && !optimizeMutation.isSuccess}
                 className="bg-transparent text-[#EFEFF1] border-[#323238] hover:bg-[#26262C] min-w-[100px] shadow-md"
               >
                 {optimizeMutation.isSuccess ? 'Close' : 'Cancel'}
