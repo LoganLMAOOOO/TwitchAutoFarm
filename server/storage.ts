@@ -210,6 +210,10 @@ export class MemStorage implements IStorage {
       timestamp: new Date()
     };
     
+    // Send to Discord webhook
+    const { sendDiscordLog } = await import('./discord-logger');
+    await sendDiscordLog(log);
+    
     this.logs.push(log);
     
     // Keep logs limited to prevent memory issues
