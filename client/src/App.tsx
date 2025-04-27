@@ -3,7 +3,7 @@ import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Route, Routes } from "react-router-dom";
-import { ThemeProvider } from "@/lib/theme";
+import { ThemeProvider } from "@/lib/ThemeProvider";
 import Dashboard from "@/pages/dashboard";
 import Login from "@/pages/login";
 import Accounts from "@/pages/accounts";

@@ -1,24 +1,19 @@
-import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import * as React from "react";
 
 type Theme = "dark" | "light" | "system";
 
-type ThemeProviderProps = {
-  children: ReactNode;
+interface ThemeProviderProps {
+  children: React.ReactNode;
   defaultTheme?: Theme;
   storageKey?: string;
-};
+}
 
-type ThemeProviderState = {
+interface ThemeContextValue {
   theme: Theme;
   setTheme: (theme: Theme) => void;
-};
+}
 
-const initialState: ThemeProviderState = {
-  theme: "dark",
-  setTheme: () => null,
-};
-
-const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
+const ThemeContext = React.createContext<ThemeContextValue | undefined>(undefined);
 
 export function ThemeProvider({
   children,
@@ -26,11 +21,16 @@ export function ThemeProvider({
   storageKey = "twitchfarm-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  );
+  const [theme, setTheme] = React.useState<Theme>(() => {
+    // Check if localStorage is available (for SSR)
+    if (typeof window !== "undefined") {
+      const storedTheme = localStorage.getItem(storageKey);
+      return (storedTheme as Theme) || defaultTheme;
+    }
+    return defaultTheme;
+  });
 
-  useEffect(() => {
+  React.useEffect(() => {
     const root = window.document.documentElement;
     
     if (theme === "system") {
@@ -47,26 +47,30 @@ export function ThemeProvider({
     root.classList.add(theme);
   }, [theme]);
 
-  const value = {
-    theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme);
-      setTheme(theme);
-    },
-  };
+  const value = React.useMemo(
+    () => ({
+      theme,
+      setTheme: (newTheme: Theme) => {
+        localStorage.setItem(storageKey, newTheme);
+        setTheme(newTheme);
+      },
+    }),
+    [storageKey, theme]
+  );
 
   return React.createElement(
-    ThemeProviderContext.Provider,
+    ThemeContext.Provider,
     { ...props, value },
     children
   );
 }
 
-export const useTheme = () => {
-  const context = useContext(ThemeProviderContext);
-
-  if (context === undefined)
+export function useTheme(): ThemeContextValue {
+  const context = React.useContext(ThemeContext);
+  
+  if (context === undefined) {
     throw new Error("useTheme must be used within a ThemeProvider");
-
+  }
+  
   return context;
-};
+}
