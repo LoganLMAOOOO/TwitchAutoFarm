@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #18181B;
+  --foreground: #EFEFF1;
+  
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: #ADADB8;
+  
+  --popover: #1F1F23;
+  --popover-foreground: #EFEFF1;
+  
+  --card: #1F1F23;
+  --card-foreground: #EFEFF1;
+  
+  --border: #323238;
+  --input: #323238;
+  
+  --primary: #9146FF;
+  --primary-foreground: #FFFFFF;
+  
+  --secondary: #2D2D39;
+  --secondary-foreground: #EFEFF1;
+  
+  --accent: #26262C;
+  --accent-foreground: #EFEFF1;
+  
+  --destructive: #F43F5E;
+  --destructive-foreground: #EFEFF1;
+  
+  --ring: #ADADB8;
+  --radius: 0.5rem;
+  
+  --chart-1: #9146FF;
+  --chart-2: #00C989;
+  --chart-3: #FFCA61;
+  --chart-4: #F43F5E;
+  --chart-5: #ADADB8;
+  
+  --success: #00C989;
+  --warning: #FFCA61;
+  --error: #F43F5E;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html, body {
+    @apply h-full bg-background text-foreground;
+  }
+  
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+  
+  .scrollbar-styled::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .scrollbar-styled::-webkit-scrollbar-track {
+    background: #1F1F23;
+  }
+  
+  .scrollbar-styled::-webkit-scrollbar-thumb {
+    background: #323238;
+    border-radius: 4px;
+  }
+  
+  .scrollbar-styled::-webkit-scrollbar-thumb:hover {
+    background: #3A3A40;
+  }
+}
