@@ -7,10 +7,11 @@ import FarmCard from "@/components/farm-card";
 import ActivityLog from "@/components/activity-log";
 import AddAccountModal from "@/components/modals/add-account-modal";
 import AddFarmModal from "@/components/modals/add-farm-modal";
+import OptimizationWizard from "@/components/optimization-wizard";
 import { apiRequest } from "@/lib/api";
 import { formatTimeDuration } from "@/lib/time-utils";
-import { Farm, Log } from "@shared/schema";
-import { PlusIcon, RotateCwIcon, MonitorIcon } from "lucide-react";
+import { Farm, Log, Account } from "@shared/schema";
+import { PlusIcon, RotateCwIcon, MonitorIcon, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ExtendedFarm extends Farm {
@@ -20,6 +21,7 @@ interface ExtendedFarm extends Farm {
 export default function Dashboard() {
   const [isAddAccountModalOpen, setIsAddAccountModalOpen] = useState(false);
   const [isAddFarmModalOpen, setIsAddFarmModalOpen] = useState(false);
+  const [isOptimizationWizardOpen, setIsOptimizationWizardOpen] = useState(false);
 
   // Fetch data
   const { data: stats, isLoading: isLoadingStats } = useQuery({
@@ -36,6 +38,10 @@ export default function Dashboard() {
       const res = await apiRequest("GET", "/api/logs?limit=5");
       return res.json();
     }
+  });
+  
+  const { data: accounts, isLoading: isLoadingAccounts } = useQuery<Account[]>({
+    queryKey: ['/api/accounts'],
   });
 
   // Mutations
