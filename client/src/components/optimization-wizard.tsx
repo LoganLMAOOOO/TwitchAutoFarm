@@ -176,12 +176,12 @@ export default function OptimizationWizard({
         if (open) resetState();
       }}
     >
-      <DialogContent className="bg-[#1F1F23] border-[#323238] max-w-xl p-0 rounded-xl shadow-xl overflow-hidden">
+      <DialogContent className="bg-[#1F1F23] border-[#323238] max-w-xl p-0 rounded-xl shadow-xl overflow-y-auto max-h-[90vh]">
         <DialogHeader className="px-6 pt-6 pb-0">
           <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-[#9146FF] to-[#772CE8] bg-clip-text text-transparent">
             Channel Point Optimization Wizard
           </DialogTitle>
-          <DialogDescription className="text-[#ADADB8]">
+          <DialogDescription className="text-white">
             Automatically optimize your farms for maximum point collection and prediction success
           </DialogDescription>
         </DialogHeader>
