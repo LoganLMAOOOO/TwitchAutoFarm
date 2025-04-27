@@ -95,6 +95,40 @@ export default function Dashboard() {
         
         {/* Dashboard Content */}
         <main className="flex-1 overflow-y-auto px-4 py-4 md:p-6 scrollbar-styled">
+          {/* One-Click Optimization Banner */}
+          <div className="mb-6 p-4 md:p-6 bg-gradient-to-r from-[#18181B] to-[#26262C] border border-[#323238] rounded-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-10">
+              <div className="w-full h-full bg-[#9146FF] rounded-full blur-3xl transform -translate-x-1/2"></div>
+            </div>
+            
+            <div className="flex flex-col md:flex-row md:items-center justify-between relative">
+              <div className="mb-4 md:mb-0 md:mr-8">
+                <h3 className="text-lg md:text-xl font-bold bg-gradient-to-r from-[#9146FF] to-[#772CE8] bg-clip-text text-transparent mb-2">
+                  One-Click Optimization
+                </h3>
+                <p className="text-sm text-[#ADADB8] max-w-xl">
+                  Automatically configure your farms for maximum point collection and prediction success
+                  based on proven strategies.
+                </p>
+              </div>
+              
+              <Button 
+                onClick={() => setIsOptimizationWizardOpen(true)}
+                className="bg-[#9146FF] hover:bg-[#772CE8] text-white font-medium flex items-center px-4 py-2 h-auto"
+                disabled={!accounts || accounts.length === 0}
+              >
+                <Sparkles className="mr-2 h-5 w-5" />
+                Optimize Now
+              </Button>
+            </div>
+            
+            {(!accounts || accounts.length === 0) && (
+              <p className="text-xs text-[#ADADB8] mt-2">
+                Add at least one account to enable optimization
+              </p>
+            )}
+          </div>
+          
           {/* Stats Overview */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-6">
             <StatCard 
@@ -204,6 +238,17 @@ export default function Dashboard() {
           queryClient.invalidateQueries({ queryKey: ['/api/farms'] });
           queryClient.invalidateQueries({ queryKey: ['/api/stats'] });
         }}
+      />
+      
+      <OptimizationWizard
+        isOpen={isOptimizationWizardOpen}
+        onClose={() => setIsOptimizationWizardOpen(false)}
+        onSuccess={() => {
+          queryClient.invalidateQueries({ queryKey: ['/api/farms'] });
+          queryClient.invalidateQueries({ queryKey: ['/api/stats'] });
+          queryClient.invalidateQueries({ queryKey: ['/api/logs'] });
+        }}
+        accounts={accounts || []}
       />
     </div>
   );
