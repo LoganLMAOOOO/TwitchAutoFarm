@@ -101,31 +101,32 @@ export default function AddAccountModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-card border-border max-w-md">
+      <DialogContent className="bg-[#1F1F23] border-[#323238] max-w-md p-4 md:p-6 rounded-xl shadow-xl">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold">
+          <DialogTitle className="text-xl font-bold bg-gradient-to-r from-[#9146FF] to-[#772CE8] bg-clip-text text-transparent">
             Add Twitch Account
           </DialogTitle>
-          <DialogDescription className="text-muted-foreground">
+          <DialogDescription className="text-[#ADADB8]">
             Enter your Twitch account details to start farming
           </DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Account Name</FormLabel>
+                  <FormLabel className="text-[#EFEFF1]">Account Name</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Display name for this account"
+                      className="bg-[#26262C] border-[#323238] text-[#EFEFF1] focus:border-[#9146FF] placeholder:text-[#7D7D8E]"
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
@@ -135,11 +136,15 @@ export default function AddAccountModal({
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Twitch Username</FormLabel>
+                  <FormLabel className="text-[#EFEFF1]">Twitch Username</FormLabel>
                   <FormControl>
-                    <Input placeholder="Your Twitch username" {...field} />
+                    <Input 
+                      placeholder="Your Twitch username" 
+                      className="bg-[#26262C] border-[#323238] text-[#EFEFF1] focus:border-[#9146FF] placeholder:text-[#7D7D8E]" 
+                      {...field} 
+                    />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
@@ -149,22 +154,22 @@ export default function AddAccountModal({
               name="authType"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Authentication Method</FormLabel>
+                  <FormLabel className="text-[#EFEFF1]">Authentication Method</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-[#26262C] border-[#323238] text-[#EFEFF1] focus:border-[#9146FF] focus:ring-[#9146FF]">
                         <SelectValue placeholder="Select auth method" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent className="bg-card">
-                      <SelectItem value="cookie">Cookie Authentication</SelectItem>
-                      <SelectItem value="oauth">OAuth Token</SelectItem>
+                    <SelectContent className="bg-[#18181B] border-[#323238] text-[#EFEFF1]">
+                      <SelectItem value="cookie" className="hover:bg-[#26262C] hover:text-white focus:bg-[#9146FF]">Cookie Authentication</SelectItem>
+                      <SelectItem value="oauth" className="hover:bg-[#26262C] hover:text-white focus:bg-[#9146FF]">OAuth Token</SelectItem>
                     </SelectContent>
                   </Select>
-                  <FormMessage />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
@@ -174,18 +179,19 @@ export default function AddAccountModal({
               name="authCredentials"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Authentication Credentials</FormLabel>
+                  <FormLabel className="text-[#EFEFF1]">Authentication Credentials</FormLabel>
                   <FormControl>
                     <Textarea
                       rows={3}
                       placeholder="Paste your authentication cookie or token here"
+                      className="bg-[#26262C] border-[#323238] text-[#EFEFF1] focus:border-[#9146FF] placeholder:text-[#7D7D8E] resize-none"
                       {...field}
                     />
                   </FormControl>
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className="text-xs text-[#ADADB8] mt-1">
                     Your credentials are stored securely and only used to connect to Twitch.
                   </p>
-                  <FormMessage />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
@@ -199,25 +205,31 @@ export default function AddAccountModal({
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
+                      className="border-[#323238] data-[state=checked]:bg-[#9146FF] data-[state=checked]:border-[#9146FF]"
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>Remember this account</FormLabel>
+                    <FormLabel className="text-[#EFEFF1]">Remember this account</FormLabel>
                   </div>
                 </FormItem>
               )}
             />
 
-            <DialogFooter className="mt-6 flex justify-end gap-2">
+            <DialogFooter className="mt-6 flex sm:justify-end justify-between gap-2">
               <Button
                 type="button"
                 variant="outline"
                 onClick={onClose}
                 disabled={isLoading}
+                className="bg-transparent text-[#EFEFF1] border-[#323238] hover:bg-[#26262C] hover:text-white flex-1 sm:flex-none"
               >
                 Cancel
               </Button>
-              <Button type="submit" disabled={isLoading}>
+              <Button 
+                type="submit" 
+                disabled={isLoading}
+                className="bg-[#9146FF] hover:bg-[#772CE8] text-white flex-1 sm:flex-none"
+              >
                 {isLoading ? "Adding..." : "Add Account"}
               </Button>
             </DialogFooter>

@@ -143,46 +143,48 @@ export default function AddFarmModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-card border-border max-w-md">
+      <DialogContent className="bg-[#1F1F23] border-[#323238] max-w-md p-4 md:p-6 rounded-xl shadow-xl">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold">Add New Farm</DialogTitle>
-          <DialogDescription className="text-muted-foreground">
+          <DialogTitle className="text-xl font-bold bg-gradient-to-r from-[#9146FF] to-[#772CE8] bg-clip-text text-transparent">
+            Add New Farm
+          </DialogTitle>
+          <DialogDescription className="text-[#ADADB8]">
             Configure a new auto-farming channel
           </DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
             <FormField
               control={form.control}
               name="accountId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Account</FormLabel>
+                  <FormLabel className="text-[#EFEFF1]">Account</FormLabel>
                   <Select
                     onValueChange={(value) => field.onChange(parseInt(value))}
                     value={field.value?.toString()}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-[#26262C] border-[#323238] text-[#EFEFF1] focus:border-[#9146FF] focus:ring-[#9146FF]">
                         <SelectValue placeholder="Select an account" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent className="bg-card">
+                    <SelectContent className="bg-[#18181B] border-[#323238] text-[#EFEFF1]">
                       {accounts && accounts.length > 0 ? (
                         accounts.map((account) => (
-                          <SelectItem key={account.id} value={account.id.toString()}>
+                          <SelectItem key={account.id} value={account.id.toString()} className="hover:bg-[#26262C] hover:text-white focus:bg-[#9146FF]">
                             {account.name}
                           </SelectItem>
                         ))
                       ) : (
-                        <SelectItem value="none" disabled>
+                        <SelectItem value="none" disabled className="text-[#7D7D8E]">
                           No accounts available
                         </SelectItem>
                       )}
                     </SelectContent>
                   </Select>
-                  <FormMessage />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
@@ -192,17 +194,21 @@ export default function AddFarmModal({
               name="channelName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Channel Name</FormLabel>
+                  <FormLabel className="text-[#EFEFF1]">Channel Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g. pokimane" {...field} />
+                    <Input 
+                      placeholder="e.g. pokimane" 
+                      className="bg-[#26262C] border-[#323238] text-[#EFEFF1] focus:border-[#9146FF] placeholder:text-[#7D7D8E]" 
+                      {...field} 
+                    />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
 
             <div className="space-y-3">
-              <FormLabel>Features to Enable</FormLabel>
+              <FormLabel className="text-[#EFEFF1]">Features to Enable</FormLabel>
               
               <FormField
                 control={form.control}
@@ -213,9 +219,10 @@ export default function AddFarmModal({
                       <Checkbox
                         checked={field.value}
                         onCheckedChange={field.onChange}
+                        className="border-[#323238] data-[state=checked]:bg-[#9146FF] data-[state=checked]:border-[#9146FF]"
                       />
                     </FormControl>
-                    <FormLabel className="font-normal cursor-pointer">
+                    <FormLabel className="text-[#EFEFF1] font-normal cursor-pointer">
                       Claim Channel Points
                     </FormLabel>
                   </FormItem>
@@ -231,9 +238,10 @@ export default function AddFarmModal({
                       <Checkbox
                         checked={field.value}
                         onCheckedChange={field.onChange}
+                        className="border-[#323238] data-[state=checked]:bg-[#9146FF] data-[state=checked]:border-[#9146FF]"
                       />
                     </FormControl>
-                    <FormLabel className="font-normal cursor-pointer">
+                    <FormLabel className="text-[#EFEFF1] font-normal cursor-pointer">
                       Accumulate Watch Time
                     </FormLabel>
                   </FormItem>
@@ -249,9 +257,10 @@ export default function AddFarmModal({
                       <Checkbox
                         checked={field.value}
                         onCheckedChange={field.onChange}
+                        className="border-[#323238] data-[state=checked]:bg-[#9146FF] data-[state=checked]:border-[#9146FF]"
                       />
                     </FormControl>
-                    <FormLabel className="font-normal cursor-pointer">
+                    <FormLabel className="text-[#EFEFF1] font-normal cursor-pointer">
                       Participate in Predictions
                     </FormLabel>
                   </FormItem>
@@ -267,9 +276,10 @@ export default function AddFarmModal({
                       <Checkbox
                         checked={field.value}
                         onCheckedChange={field.onChange}
+                        className="border-[#323238] data-[state=checked]:bg-[#9146FF] data-[state=checked]:border-[#9146FF]"
                       />
                     </FormControl>
-                    <FormLabel className="font-normal cursor-pointer">
+                    <FormLabel className="text-[#EFEFF1] font-normal cursor-pointer">
                       Claim Drops
                     </FormLabel>
                   </FormItem>
@@ -278,32 +288,32 @@ export default function AddFarmModal({
             </div>
 
             {showPredictionSettings && (
-              <div className="p-3 border border-border rounded-md bg-background space-y-4">
-                <p className="text-sm font-medium mb-2">Prediction Settings</p>
+              <div className="p-4 border border-[#323238] rounded-md bg-[#26262C] space-y-4">
+                <p className="text-sm font-medium mb-2 text-[#EFEFF1]">Prediction Settings</p>
                 
                 <FormField
                   control={form.control}
                   name="predictionSettings.strategy"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-xs">Strategy</FormLabel>
+                      <FormLabel className="text-xs text-[#EFEFF1]">Strategy</FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger className="text-sm">
+                          <SelectTrigger className="text-sm bg-[#18181B] border-[#323238] text-[#EFEFF1] focus:border-[#9146FF] focus:ring-[#9146FF]">
                             <SelectValue placeholder="Select strategy" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent className="bg-card">
-                          <SelectItem value="random">Random Choice</SelectItem>
-                          <SelectItem value="majority">Follow Majority</SelectItem>
-                          <SelectItem value="percentage">Percentage-based</SelectItem>
-                          <SelectItem value="custom">Custom Logic</SelectItem>
+                        <SelectContent className="bg-[#18181B] border-[#323238] text-[#EFEFF1]">
+                          <SelectItem value="random" className="hover:bg-[#26262C] hover:text-white">Random Choice</SelectItem>
+                          <SelectItem value="majority" className="hover:bg-[#26262C] hover:text-white">Follow Majority</SelectItem>
+                          <SelectItem value="percentage" className="hover:bg-[#26262C] hover:text-white">Percentage-based</SelectItem>
+                          <SelectItem value="custom" className="hover:bg-[#26262C] hover:text-white">Custom Logic</SelectItem>
                         </SelectContent>
                       </Select>
-                      <FormMessage />
+                      <FormMessage className="text-red-400" />
                     </FormItem>
                   )}
                 />
@@ -313,12 +323,13 @@ export default function AddFarmModal({
                   name="predictionSettings.maxPoints"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-xs">Max Points to Bet</FormLabel>
+                      <FormLabel className="text-xs text-[#EFEFF1]">Max Points to Bet</FormLabel>
                       <FormControl>
                         <Input
                           type="number"
                           min={100}
                           placeholder="e.g. 5000"
+                          className="bg-[#18181B] border-[#323238] text-[#EFEFF1] focus:border-[#9146FF] placeholder:text-[#7D7D8E]"
                           {...field}
                           onChange={(e) => {
                             field.onChange(
@@ -329,7 +340,7 @@ export default function AddFarmModal({
                           }}
                         />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="text-red-400" />
                     </FormItem>
                   )}
                 />
@@ -343,9 +354,10 @@ export default function AddFarmModal({
                         <Checkbox
                           checked={field.value}
                           onCheckedChange={field.onChange}
+                          className="border-[#323238] data-[state=checked]:bg-[#9146FF] data-[state=checked]:border-[#9146FF]"
                         />
                       </FormControl>
-                      <FormLabel className="text-xs font-normal cursor-pointer">
+                      <FormLabel className="text-xs text-[#EFEFF1] font-normal cursor-pointer">
                         Only bet if odds are favorable
                       </FormLabel>
                     </FormItem>
@@ -354,16 +366,21 @@ export default function AddFarmModal({
               </div>
             )}
 
-            <DialogFooter className="mt-6 flex justify-end gap-2">
+            <DialogFooter className="mt-6 flex sm:justify-end justify-between gap-2">
               <Button
                 type="button"
                 variant="outline"
                 onClick={onClose}
                 disabled={isLoading}
+                className="bg-transparent text-[#EFEFF1] border-[#323238] hover:bg-[#26262C] hover:text-white flex-1 sm:flex-none"
               >
                 Cancel
               </Button>
-              <Button type="submit" disabled={isLoading || !accounts || accounts.length === 0}>
+              <Button 
+                type="submit" 
+                disabled={isLoading || !accounts || accounts.length === 0}
+                className="bg-[#9146FF] hover:bg-[#772CE8] text-white flex-1 sm:flex-none"
+              >
                 {isLoading ? "Creating..." : "Start Farm"}
               </Button>
             </DialogFooter>

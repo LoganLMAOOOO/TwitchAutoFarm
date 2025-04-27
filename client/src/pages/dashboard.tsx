@@ -10,7 +10,7 @@ import AddFarmModal from "@/components/modals/add-farm-modal";
 import { apiRequest } from "@/lib/api";
 import { formatTimeDuration } from "@/lib/time-utils";
 import { Farm, Log } from "@shared/schema";
-import { PlusIcon, RotateCwIcon } from "lucide-react";
+import { PlusIcon, RotateCwIcon, MonitorIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ExtendedFarm extends Farm {
@@ -55,37 +55,42 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background">
+    <div className="flex h-screen overflow-hidden bg-[#0E0E10]">
       <Sidebar />
       
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Bar */}
-        <header className="bg-card border-b border-border h-16 flex items-center justify-between px-6">
-          <h2 className="text-lg font-medium">Dashboard</h2>
+        <header className="bg-[#1F1F23] border-b border-[#323238] h-16 flex items-center justify-between px-4 md:px-6 sticky top-0 z-10">
+          <h2 className="text-lg font-medium bg-gradient-to-r from-[#9146FF] to-[#772CE8] bg-clip-text text-transparent">Dashboard</h2>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 md:space-x-4">
             <Button 
               variant="secondary" 
               size="sm"
               onClick={handleRefreshAllFarms}
               disabled={refreshFarmsMutation.isPending}
+              className="text-xs md:text-sm bg-[#26262C] hover:bg-[#3A3A3D] border-[#323238]"
             >
-              <RotateCwIcon className="mr-2 h-4 w-4" />
-              Refresh All
+              <RotateCwIcon className="mr-1 md:mr-2 h-3 w-3 md:h-4 md:w-4" />
+              <span className="hidden sm:inline">Refresh</span>
             </Button>
             
-            <Button onClick={() => setIsAddAccountModalOpen(true)}>
-              <PlusIcon className="mr-2 h-4 w-4" />
-              Add Account
+            <Button 
+              onClick={() => setIsAddAccountModalOpen(true)}
+              className="text-xs md:text-sm bg-[#9146FF] hover:bg-[#772CE8] text-white"
+            >
+              <PlusIcon className="mr-1 md:mr-2 h-3 w-3 md:h-4 md:w-4" />
+              <span className="hidden sm:inline">Add Account</span>
+              <span className="inline sm:hidden">Account</span>
             </Button>
           </div>
         </header>
         
         {/* Dashboard Content */}
-        <main className="flex-1 overflow-y-auto p-6 scrollbar-styled">
+        <main className="flex-1 overflow-y-auto px-4 py-4 md:p-6 scrollbar-styled">
           {/* Stats Overview */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-6">
             <StatCard 
               title="Total Active Farms"
               value={isLoadingStats ? "..." : stats?.activeFarms?.toString() || "0"}
@@ -122,23 +127,27 @@ export default function Dashboard() {
           {/* Active Farms Section */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold">Active Farms</h2>
+              <h2 className="text-xl font-bold bg-gradient-to-r from-[#9146FF] to-[#772CE8] bg-clip-text text-transparent">
+                Active Farms
+              </h2>
               <button 
-                className="text-primary hover:text-opacity-80 text-sm font-medium"
+                className="text-[#9146FF] hover:text-[#772CE8] text-sm font-medium flex items-center"
                 onClick={() => setIsAddFarmModalOpen(true)}
               >
-                <PlusIcon className="inline-block mr-1 h-4 w-4" /> Add Farm
+                <PlusIcon className="mr-1 h-4 w-4" /> 
+                <span className="hidden sm:inline">Add Farm</span>
+                <span className="inline sm:hidden">Add</span>
               </button>
             </div>
             
             {isLoadingFarms ? (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[1, 2].map(i => (
-                  <div key={i} className="bg-card animate-pulse border border-border rounded-lg h-64"></div>
+                  <div key={i} className="bg-[#1F1F23] animate-pulse border border-[#323238] rounded-lg h-48 md:h-64"></div>
                 ))}
               </div>
             ) : farms && farms.length > 0 ? (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {farms.map(farm => (
                   <FarmCard 
                     key={farm.id} 
@@ -149,9 +158,15 @@ export default function Dashboard() {
                 ))}
               </div>
             ) : (
-              <div className="bg-card border border-border rounded-lg p-8 text-center">
-                <p className="text-muted-foreground mb-4">No active farms found</p>
-                <Button onClick={() => setIsAddFarmModalOpen(true)}>
+              <div className="bg-[#1F1F23] border border-[#323238] rounded-lg p-6 md:p-8 text-center">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#26262C] flex items-center justify-center">
+                  <MonitorIcon className="h-8 w-8 text-[#9146FF]" />
+                </div>
+                <p className="text-[#ADADB8] mb-4">No active farms found</p>
+                <Button 
+                  onClick={() => setIsAddFarmModalOpen(true)}
+                  className="bg-[#9146FF] hover:bg-[#772CE8] text-white"
+                >
                   <PlusIcon className="mr-2 h-4 w-4" />
                   Add Your First Farm
                 </Button>
@@ -160,7 +175,12 @@ export default function Dashboard() {
           </div>
           
           {/* Activity Log Section */}
-          <ActivityLog logs={logs || []} isLoading={isLoadingLogs} />
+          <div className="mt-6">
+            <h2 className="text-xl font-bold mb-4 bg-gradient-to-r from-[#9146FF] to-[#772CE8] bg-clip-text text-transparent">
+              Recent Activity
+            </h2>
+            <ActivityLog logs={logs || []} isLoading={isLoadingLogs} />
+          </div>
         </main>
       </div>
       

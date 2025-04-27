@@ -87,10 +87,10 @@ export default function Sidebar() {
     <>
       <div className="p-4 border-b border-border">
         <div className="flex items-center">
-          <span className="text-primary text-2xl mr-2">
+          <span className="text-[#9146FF] text-2xl mr-2">
             <TwitchIcon size={24} />
           </span>
-          <h1 className="font-bold text-xl">TwitchFarm</h1>
+          <h1 className="font-bold text-xl bg-gradient-to-r from-[#9146FF] to-[#772CE8] bg-clip-text text-transparent">TwitchFarm</h1>
         </div>
         <p className="text-muted-foreground text-xs mt-1">Automation Dashboard</p>
       </div>
@@ -103,10 +103,10 @@ export default function Sidebar() {
                 <Link
                   to={item.path}
                   className={cn(
-                    "flex items-center px-4 py-2",
+                    "flex items-center px-4 py-2 rounded-md transition-colors duration-200",
                     location.pathname === item.path
-                      ? "text-foreground bg-primary bg-opacity-10 border-l-4 border-primary"
-                      : "text-muted-foreground hover:bg-accent"
+                      ? "text-white bg-gradient-to-r from-[#9146FF] to-[#772CE8] font-medium"
+                      : "text-muted-foreground hover:bg-[#26262C] hover:text-white"
                   )}
                 >
                   {item.icon}
@@ -144,8 +144,9 @@ export default function Sidebar() {
   // Mobile toggle button
   const mobileToggle = isMobile && (
     <button
-      className="fixed top-4 left-4 z-50 p-2 bg-card rounded-md border border-border"
+      className="fixed top-4 left-4 z-50 p-2 bg-card rounded-md border border-border shadow-lg text-[#9146FF] hover:bg-[#26262C] transition-colors duration-200"
       onClick={() => setIsOpen(!isOpen)}
+      aria-label={isOpen ? "Close menu" : "Open menu"}
     >
       {isOpen ? (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
